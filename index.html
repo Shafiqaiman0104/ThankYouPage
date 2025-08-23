@@ -65,19 +65,19 @@
 <body>
 
 <div class="container">
-  <div class="checkmark">✔️</div>
-  <h1>Thank You!</h1>
-  <p>Your campsite booking is confirmed. We’ll prepare your spot and see you soon!</p>
-  <button onclick="sendThankYou()">Back to Chat</button>
+  <div class="checkmark">⏳</div>
+  <h1>Loading...</h1>
+  <p>Please wait..</p>
 </div>
-
 <script>
-const CHAT_URL = "https://venturerush.up.railway.app/lite/mk-ai-chatbot/?m=channel-web&v=Fullscreen&options=%7B%22hideWidget%22%3Atrue%2C%22config%22%3A%7B%22enableReset%22%3Atrue%2C%22enableTranscriptDownload%22%3Atrue%7D%7D";
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status_id'); // 1=success, 2=pending, 3=fail
 
-async function sendThankYou() {
-window.location.href = CHAT_URL;
+if(status === '1'){
+    window.location.href = 'thankYou.html';
+} else if(status === '2' || status === '3'){
+    window.location.href = 'paymentFail.html';
 }
 </script>
-
 </body>
 </html>
