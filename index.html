@@ -71,13 +71,33 @@
 </div>
 <script>
 const params = new URLSearchParams(window.location.search);
-const status = params.get('status_id'); // 1=success, 2=pending, 3=fail
 
-if(status === '1'){
-    window.location.href = 'thankYou.html';
-} else if(status === '2' || status === '3'){
-    window.location.href = 'paymentFail.html';
+// ✅ Both constants defined
+const toyyibStatus = params.get('status_id'); // ToyyibPay: 1=success, 2=pending, 3=fail
+const hitpayStatus = params.get('status');    // HitPay: complete/failed/canceled
+
+// ToyyibPay logic
+if(toyyibStatus){
+    if(toyyibStatus === '1'){
+        window.location.href = 'thankYou.html';
+    } else if(toyyibStatus === '2' || toyyibStatus === '3'){
+        window.location.href = 'paymentFail.html';
+    }
+}
+
+// HitPay logic
+if(hitpayStatus){
+    if(hitpayStatus === 'complete'){
+        window.location.href = 'thankYou1.html';
+    } else if(hitpayStatus === 'failed'){
+        window.location.href = 'paymentFail1.html';
+    } else if(hitpayStatus === 'canceled'){
+        window.location.href = 'paymentCanceled1.html';
+    } else {
+        console.warn('Unknown HitPay status:', hitpayStatus);
+    }
 }
 </script>
 </body>
 </html>
+
