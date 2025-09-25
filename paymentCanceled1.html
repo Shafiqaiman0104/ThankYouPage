@@ -68,12 +68,17 @@
   <div class="checkmark">❌</div>
   <h1>Payment Not Complete</h1>
   <p>NOTE: Please complete your payment..</p>
+  <button onclick="goBack()">Click here to complete payment</button>
   <button onclick="sendThankYou()">Back to Chat</button>
 </div>
 
 <script>
 const CHAT_URL = "https://mkrimbacamp-vr.com/webChat.html";
 
+function goBack() {
+    window.history.back(); // goes back one page in browser history
+}
+  
 async function sendThankYou() {
 window.location.href = CHAT_URL;
 }
